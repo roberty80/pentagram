@@ -1,0 +1,52 @@
+<html>
+<head>
+</head>
+    <style type="text/css">
+        .joke-table{
+            width:50%;
+            border:1px solid #e3e3e3
+        }
+        .joke-table > thead > tr > td{
+            background-color:#cacaca;
+            padding:10px;
+        }
+        .joke-table > tbody{
+            padding:10px;
+        }
+    </style>
+<body>
+    <table class="joke-table">
+        <thead>
+            <tr>
+                <td>Category</td>
+                <td>Joke</td>
+            </tr>
+			<tbody>
+				
+			</tbody>
+        </thead>
+    </table>
+    <script   src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script type="text/javascript">
+    var data = jQuery.ajax({
+        "url":"http://api.icndb.com/jokes/random/15"
+        , success: function(data) {
+            for(var key in data.value){
+				var item = data.value[key];
+				var template = jQuery("<tr><td> class='category-container'></td><td class='joke-container'></td></tr>")
+				template.find(".category-container").html(item.categories[0]);
+				template.find(".joke-container").html(item.joke);
+				jQuery(".joke-table > tbody").append(template);
+			}
+        }
+    });
+	jQuery.ajax({
+	"url":"testurl"
+	,"type":"POST"	
+	."data":myJsData,
+})
+    
+      </script>  
+    }
+</body>
+</html>
